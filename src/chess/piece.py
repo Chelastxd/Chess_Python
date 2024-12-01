@@ -1,5 +1,10 @@
+
+
 class Piece:
-    def __init__(self, x, y, color):
-        self.x = x #int
-        self.y = y #int
+    def __init__(self, position, color, chessboard):
+        self.position = position #tupel
         self.color = color #boolean (white is True)
+        self.board = chessboard
+
+    def is_legal_move(self, neue_position):
+        print("Error1")
