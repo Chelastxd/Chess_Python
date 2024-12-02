@@ -16,3 +16,4 @@ class Chessboard():
         for piece in self.piecelist:
             if piece.position == position:
                 return piece
+        return None
