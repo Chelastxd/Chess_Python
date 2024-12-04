@@ -13,7 +13,10 @@ class Piece:
         print("Error1b")
 
     def move(self, new_position):
-        if self.is_legal_move(new_position):
+        if self.is_legal_move(new_position)[0]:
+            if self.is_legal_move(new_position)[1]:
+                self.chessboard.remove_piece(new_position)
             self.position = new_position
+            print(self.position)
         else:
-            print("Illegal move!")
+            print("Illegal move!", new_position)
