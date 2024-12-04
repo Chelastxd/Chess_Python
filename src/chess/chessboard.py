@@ -3,6 +3,17 @@ from piece import *
 class Chessboard():
     def __init__(self):
         self.piecelist = []
+        self.finished = False
+
+    def move_piece(self, position, new_position):
+        for piece in self.piecelist:
+            if piece.position == position and piece.is_legal_move(new_position):
+                self.get_piece(position).move(new_position)
+            if self.win_condition():
+                if piece.color:
+                    print("White wins!!!")
+                else:
+                    print("Black wins!!!")
 
     def add_piece(self, piece):
         self.piecelist.append(piece)
@@ -18,7 +29,7 @@ class Chessboard():
                 return piece
         return None
     
-    def board_display(self):
+    def board_display(self): # OUTDATED PAWN DISPLAY
         display = {}
         for rank in range(8):
             display[rank] = {}
@@ -27,10 +38,10 @@ class Chessboard():
                 display[rank][file] = " "
                 for piece in self.piecelist:
                     if (file, rank) == piece.position:
-                        display[rank][file] = str(0 + piece.color) # temporary black/white pawn display, True as "1"
+                        display[rank][file] = str(0 + piece.color)
 
         for i in range(8):
-            print(list(display[7-i].values())) # top to bottom display using 8 print commands
+            print(list(display[7-i].values()))
 
     def piece_dictionary(self):
         piece_dic = {}
@@ -41,7 +52,7 @@ class Chessboard():
     def board_status(self):
         piece_dic = self.piece_dictionary()
         board_dic = {}
-        for j in range(8):
+        for j in range(7, -1, -1): # range(7, -1, -1) statt range(8), damit weiß auch unten ist
             board_dic[j] = []
             for i in range(8):
                 piece = piece_dic.get((i,j))
@@ -54,8 +65,9 @@ class Chessboard():
     def win_condition(self):
         for piece in self.piecelist:
             for i in range(8):
-                if piece.self_color == True and piece.position == (i, 7):
-                    print("White wins!")
-                elif piece.self_color == False and piece.position == (i, 0):
-                    print("Black wins!")
+                if piece.color == True and piece.position == (i, 7):
+                    return True
+                elif piece.color == False and piece.position == (i, 0):
+                    return True
+        return False
 

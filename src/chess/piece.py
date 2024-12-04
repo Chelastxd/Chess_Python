@@ -17,6 +17,11 @@ class Piece:
             if self.is_legal_move(new_position)[1]:
                 self.chessboard.remove_piece(new_position)
             self.position = new_position
-            print(self.position)
+            if self.chessboard.win_condition():
+                if self.color:
+                    print("WHITE wins")
+                else:
+                    print("BLACK wins")
+                self.chessboard.finished = True
         else:
             print("Illegal move!", new_position)
