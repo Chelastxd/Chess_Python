@@ -64,7 +64,7 @@ class Chessboard():
                     else:
                         board_dic[j].append("\x1b[34mP\x1b[0m")
                 else:
-                    board_dic[j].append("X")
+                    board_dic[j].append("·")
             print("\x1b[90m" + str(j+1) +"\x1b[0m" + "   " + list_to_string(board_dic[j]))
         print("\n    \x1b[90mA  B  C  D  E  F  G  H\x1b[0m \n")
 
