@@ -19,9 +19,9 @@ class Piece:
             self.position = new_position
             if self.chessboard.win_condition():
                 if self.color:
-                    print("WHITE wins")
+                    print("RED wins")
                 else:
-                    print("BLACK wins")
+                    print("BLUE wins")
                 self.chessboard.finished = True
         else:
-            print("Illegal move!", new_position)
+            print("Illegal move!")
