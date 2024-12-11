@@ -5,16 +5,23 @@ class Chessboard():
     def __init__(self):
         self.piecelist = []
         self.finished = False
+        self.turnplayer = True
 
     def move_piece(self, position, new_position):
         for piece in self.piecelist:
-            if piece.position == position and piece.is_legal_move(new_position):
-                self.get_piece(position).move(new_position)
-            if self.win_condition():
-                if piece.color:
-                    print("White wins!!!")
-                else:
-                    print("Black wins!!!")
+            if piece.position != position:
+                continue
+            if piece.color != self.turnplayer:
+                return "wrong_color"
+            if not piece.is_legal_move(new_position)[0]:
+                return "invalid_move"
+            piece.move(new_position)
+            if not self.win_condition():
+                return
+            if piece.color:
+                return "win_red"
+            return "win_blue"
+        return "no_piece_on_position"
 
     def add_piece(self, piece):
         self.piecelist.append(piece)
@@ -76,4 +83,6 @@ class Chessboard():
                 elif piece.color == False and piece.position == (i, 0):
                     return True
         return False
-
+    
+    def turnchange(self):
+        self.turnplayer = not self.turnplayer
