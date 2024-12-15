@@ -28,45 +28,57 @@ class Piece:
 
     def get_paths(self, diagonal=False, straight=False):
         legal_moves_list = []
+
         if straight:
-            for i in range(0, -self.position[1] + 7): # up
-                if i != 0:
-                    pos = (self.position[0], i)
-                    piece_found = pos in [j.position for j in self.chessboard.piecelist]
-                    if not piece_found:
-                        legal_moves_list.append(pos)
-                    elif piece_found and self.chessboard.get_piece(pos).color != self.color:
-                        legal_moves_list.append(pos)
-                    else:
-                        break
-            for i in range(-self.position[1], 0): # down
-                if i != 0:
-                    pos = (self.position[0], -i)
-                    piece_found = pos in [j.position for j in self.chessboard.piecelist]
-                    if not piece_found:
-                        legal_moves_list.append(pos)
-                    elif piece_found and self.chessboard.get_piece(pos).color != self.color:
-                        legal_moves_list.append(pos)
-                    else:
-                        break
-            for i in range(-self.position[0], 0): # left
-                if i != 0:
-                    pos = (-i, self.position[1])
-                    piece_found = pos in [j.position for j in self.chessboard.piecelist]
-                    if not piece_found:
-                        legal_moves_list.append(pos)
-                    elif piece_found and self.chessboard.get_piece(pos).color != self.color:
-                        legal_moves_list.append(pos)
-                    else:
-                        break
-            for i in range(0, -self.position[0] + 7): # right
-                if i != 0:
-                    pos = (i, self.position[1])
-                    piece_found = pos in [j.position for j in self.chessboard.piecelist]
-                    if not piece_found:
-                        legal_moves_list.append(pos)
-                    elif piece_found and self.chessboard.get_piece(pos).color != self.color:
-                        legal_moves_list.append(pos)
-                    else:
-                        break
+            for i in range(self.position[0]-1, -1, -1): # left
+                if self.chessboard.get_piece((i, self.position[1])) == None:
+                    legal_moves_list.append((i, self.position[1]))
+                else:
+                    break
+
+            for i in range(self.position[0]+1, 8, 1): # right
+                if self.chessboard.get_piece((i, self.position[1])) == None:
+                    legal_moves_list.append((i, self.position[1]))
+                else:
+                    break
+
+            for i in range(self.position[1]-1, -1, -1): # down
+                if self.chessboard.get_piece((self.position[0], i)) == None:
+                    legal_moves_list.append((self.position[0], i))
+                else:
+                    break
+
+            for i in range(self.position[1]+1, 8, 1): # up
+                if self.chessboard.get_piece((self.position[0], i)) == None:
+                    legal_moves_list.append((self.position[0], i))
+                else:
+                    break
+        
+
+        if diagonal:
+            for i in range(1, 9): # down_left
+                if self.chessboard.get_piece((self.position[0]-i, self.position[1]-i)) == None:
+                    legal_moves_list.append((self.position[0]-i, self.position[1]-i))
+                else:
+                    break
+
+            for i in range(1, 9): # down_right
+                if self.chessboard.get_piece((self.position[0]+i, self.position[1]-i)) == None:
+                    legal_moves_list.append((self.position[0]+i, self.position[1]-i))
+                else:
+                    break
+
+            for i in range(1, 9): # up_left
+                if self.chessboard.get_piece((self.position[0]-i, self.position[1]+i)) == None:
+                    legal_moves_list.append((self.position[0]-i, self.position[1]+i))
+                else:
+                    break
+
+            for i in range(1, 9): # up_right
+                if self.chessboard.get_piece((self.position[0]+i, self.position[1]+i)) == None:
+                    legal_moves_list.append((self.position[0]+i, self.position[1]+i))
+                else:
+                    break
+
+
         return legal_moves_list

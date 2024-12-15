@@ -3,8 +3,13 @@ from piece import *
 from utils import *
 from inputparser import *
 
-from pieces.pawn import *
-from pieces.rook import *
+from pieces.pawn import Pawn
+from pieces.knight import Knight
+from pieces.bishop import Bishop
+from pieces.rook import Rook
+from pieces.queen import Queen
+from pieces.king import King
+
 
 chessboard = Chessboard()
 
@@ -15,6 +20,9 @@ for i in range(8): # 0-7
 print()
 print("\x1b[31mRed's Turn\x1b[0m")
 chessboard.board_status()
+
+print(Piece((4,4), True, chessboard).get_paths(straight=True))
+
 # main loop
 while True:
     if chessboard.finished:
