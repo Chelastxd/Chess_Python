@@ -1,8 +1,10 @@
 from chessboard import *
 from piece import *
-from pawn import *
 from utils import *
 from inputparser import *
+
+from pieces.pawn import *
+from pieces.rook import *
 
 chessboard = Chessboard()
 
