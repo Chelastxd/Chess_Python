@@ -2,5 +2,7 @@ from piece import *
 from chessboard import *
 
 class Queen:
-    def __init__(self):
-        pass
+    def legal_moves(self):
+        return self.get_paths(straight=True, diagonal=True)
+    
+    # Yes, this is the entire Queen function.

@@ -13,7 +13,7 @@ class Chessboard():
                 continue
             if piece.color != self.turnplayer:
                 return "wrong_color"
-            if not piece.is_legal_move(new_position)[0]:
+            if not piece.is_legal_move(new_position):
                 return "invalid_move"
             piece.move(new_position)
             if not self.win_condition():

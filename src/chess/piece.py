@@ -3,20 +3,21 @@
 class Piece:
     def __init__(self, position, color, chessboard):
         self.position = position #tupel
-        self.color = color #boolean (white is True)
+        self.color = color #boolean (white/red is True, black/blue is False)
         self.chessboard = chessboard
 
-    def is_legal_move(self, neue_position):
-        print("Error1")
+    def is_legal_move(self, new_position):
+        return new_position in self.legal_moves()
 
-    def legal_moves(self, new_pos):
-        print("Error1b")
+    def legal_moves(self, new_pos): # error catching
+        print("Error1b: sub_class of piece seems to lack legal_moves()")
 
     def move(self, new_position):
-        if self.is_legal_move(new_position)[0]:
-            if self.is_legal_move(new_position)[1]:
+        if self.is_legal_move(new_position):
+            if self.chessboard.get_piece(new_position) != None:
                 self.chessboard.remove_piece(new_position)
             self.position = new_position
+
             if self.chessboard.win_condition():
                 if self.color:
                     print("RED wins")
