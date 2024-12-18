@@ -6,6 +6,14 @@ class Chessboard():
         self.piecelist = []
         self.finished = False
         self.turnplayer = True
+        self.piece_checkuplist ={
+            "Queen": "Q",
+            "Rook": "R",
+            "Bishop": "B",
+            "Knight": "K",
+            "King": "K",
+            "Pawn": "P"
+        }
 
     def move_piece(self, position, new_position):
         for piece in self.piecelist:
@@ -16,6 +24,8 @@ class Chessboard():
             if not piece.is_legal_move(new_position):
                 return "invalid_move"
             piece.move(new_position)
+            if get_piece_type(piece) == "Pawn":
+                piece.promotion()
             if not self.win_condition():
                 return
             if piece.color:
@@ -66,10 +76,12 @@ class Chessboard():
             for i in range(8):
                 piece = piece_dic.get((i,j))
                 if piece != None:
+                    piece_type = get_piece_type(piece)
+                    piece_symbol = self.piece_checkuplist[piece_type]
                     if piece.color:
-                        board_dic[j].append("\x1b[31mP\x1b[0m")
+                        board_dic[j].append("\x1b[31m"+piece_symbol+"\x1b[0m")
                     else:
-                        board_dic[j].append("\x1b[34mP\x1b[0m")
+                        board_dic[j].append("\x1b[34m"+piece_symbol+"\x1b[0m")
                 else:
                     board_dic[j].append("·")
             print("\x1b[90m" + str(j+1) +"\x1b[0m" + "   " + list_to_string(board_dic[j]))
