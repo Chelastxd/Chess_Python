@@ -20,7 +20,7 @@ class Pawn(Piece):
                 legal_moves_list.append(i)
 
         for i in short_captures:
-            if self.chessboard.get_piece(i) != None and self.chessboard.get_piece(i) in self.get_paths(diagonal=True):
+            if self.chessboard.get_piece(i) != None and i in self.get_paths(diagonal=True):
                 legal_moves_list.append(i)
 
         return legal_moves_list
