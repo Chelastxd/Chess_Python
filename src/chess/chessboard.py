@@ -10,19 +10,20 @@ class Chessboard():
             "Queen": "Q",
             "Rook": "R",
             "Bishop": "B",
-            "Knight": "K",
+            "Knight": "N", # N because K is already King!!
             "King": "K",
             "Pawn": "P"
         }
 
     def move_piece(self, position, new_position):
+        # Moves a piece or returns an appropriate error.
         for piece in self.piecelist:
             if piece.position != position:
                 continue
             if piece.color != self.turnplayer:
                 return "wrong_color"
             if not piece.is_legal_move(new_position):
-                return "invalid_move"
+                return f"invalid_move{piece.legal_moves()}"
             piece.move(new_position)
             if get_piece_type(piece) == "Pawn":
                 piece.promotion()
@@ -46,20 +47,6 @@ class Chessboard():
             if piece.position == position:
                 return piece
         return None
-    
-    #def board_display(self): # OUTDATED PAWN DISPLAY
-        display = {}
-        for rank in range(8):
-            display[rank] = {}
-            for file in range(8):
-
-                display[rank][file] = " "
-                for piece in self.piecelist:
-                    if (file, rank) == piece.position:
-                        display[rank][file] = str(0 + piece.color)
-
-        for i in range(8):
-            print(list(display[7-i].values()))
 
     def piece_dictionary(self):
         piece_dic = {}
@@ -71,7 +58,7 @@ class Chessboard():
         piece_dic = self.piece_dictionary()
         board_dic = {}
         print()
-        for j in range(7, -1, -1): # range(7, -1, -1) statt range(8), damit weiß auch unten ist
+        for j in range(7, -1, -1): # range(7, -1, -1) statt range(8), damit weiss auch unten ist
             board_dic[j] = []
             for i in range(8):
                 piece = piece_dic.get((i,j))

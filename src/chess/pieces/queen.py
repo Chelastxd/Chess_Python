@@ -1,7 +1,7 @@
 from piece import *
 from chessboard import *
 
-class Queen:
+class Queen(Piece):
     def legal_moves(self):
         return self.get_paths(straight=True, diagonal=True)
     

@@ -34,7 +34,7 @@ class Piece:
             for i in range(self.position[0]-1, -1, -1): # left
                 if self.chessboard.get_piece((i, self.position[1])) == None:
                     legal_moves_list.append((i, self.position[1]))
-                elif self.chessboard.get_piece((i, self.position[1])) != self.color:
+                elif self.chessboard.get_piece((i, self.position[1])).color != self.color:
                     legal_moves_list.append((i, self.position[1]))
                     break
                 else:
@@ -43,7 +43,7 @@ class Piece:
             for i in range(self.position[0]+1, 8, 1): # right
                 if self.chessboard.get_piece((i, self.position[1])) == None:
                     legal_moves_list.append((i, self.position[1]))
-                elif self.chessboard.get_piece((i, self.position[1])) != self.color:
+                elif self.chessboard.get_piece((i, self.position[1])).color != self.color:
                     legal_moves_list.append((i, self.position[1]))
                     break
                 else:
@@ -52,7 +52,7 @@ class Piece:
             for i in range(self.position[1]-1, -1, -1): # down
                 if self.chessboard.get_piece((self.position[0], i)) == None:
                     legal_moves_list.append((self.position[0], i))
-                elif self.chessboard.get_piece((self.position[0], i)) != self.color:
+                elif self.chessboard.get_piece((self.position[0], i)).color != self.color:
                     legal_moves_list.append((self.position[0], i))
                     break
                 else:
@@ -61,7 +61,7 @@ class Piece:
             for i in range(self.position[1]+1, 8, 1): # up
                 if self.chessboard.get_piece((self.position[0], i)) == None:
                     legal_moves_list.append((self.position[0], i))
-                elif self.chessboard.get_piece((self.position[0], i)) != self.color:
+                elif self.chessboard.get_piece((self.position[0], i)).color != self.color:
                     legal_moves_list.append((self.position[0], i))
                     break
                 else:
@@ -72,7 +72,7 @@ class Piece:
             for i in range(1, 9): # down_left
                 if self.chessboard.get_piece((self.position[0]-i, self.position[1]-i)) == None:
                     legal_moves_list.append((self.position[0]-i, self.position[1]-i))
-                elif self.chessboard.get_piece((self.position[0]-i, self.position[1]-i)) != self.color:
+                elif self.chessboard.get_piece((self.position[0]-i, self.position[1]-i)).color != self.color:
                     legal_moves_list.append((self.position[0]-i, self.position[1]-i))
                     break
                 else:
@@ -81,7 +81,7 @@ class Piece:
             for i in range(1, 9): # down_right
                 if self.chessboard.get_piece((self.position[0]+i, self.position[1]-i)) == None:
                     legal_moves_list.append((self.position[0]+i, self.position[1]-i))
-                elif self.chessboard.get_piece((self.position[0]+i, self.position[1]-i)) != self.color:
+                elif self.chessboard.get_piece((self.position[0]+i, self.position[1]-i)).color != self.color:
                     legal_moves_list.append((self.position[0]+i, self.position[1]-i))
                     break
                 else:
@@ -90,7 +90,7 @@ class Piece:
             for i in range(1, 9): # up_left
                 if self.chessboard.get_piece((self.position[0]-i, self.position[1]+i)) == None:
                     legal_moves_list.append((self.position[0]-i, self.position[1]+i))
-                elif self.chessboard.get_piece((self.position[0]-i, self.position[1]+i)) != self.color:
+                elif self.chessboard.get_piece((self.position[0]-i, self.position[1]+i)).color != self.color:
                     legal_moves_list.append((self.position[0]-i, self.position[1]+i))
                     break
                 else:
@@ -99,7 +99,7 @@ class Piece:
             for i in range(1, 9): # up_right
                 if self.chessboard.get_piece((self.position[0]+i, self.position[1]+i)) == None:
                     legal_moves_list.append((self.position[0]+i, self.position[1]+i))
-                elif self.chessboard.get_piece((self.position[0]+i, self.position[1]+i)) != self.color:
+                elif self.chessboard.get_piece((self.position[0]+i, self.position[1]+i)).color != self.color:
                     legal_moves_list.append((self.position[0]+i, self.position[1]+i))
                     break
                 else:

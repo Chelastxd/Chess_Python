@@ -1,4 +1,5 @@
-def translate(move_str): # translate "b3, b4", "b3b4" or "b3 should go to b4" into position and new_position
+def translate(move_str):
+    # Translates "b3, b4", "b3b4" or "b3 should go to b4" into position and new_position.
     if type(move_str) is str:
         if move_str[0] in "ABCDEFGHabcdefgh" and move_str[len(move_str) - 2] in "ABCDEFGHabcdefgh" and move_str[1] in "12345678" and move_str[len(move_str) - 1] in "12345678":
             move_str = move_str.lower()
